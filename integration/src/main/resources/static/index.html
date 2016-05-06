@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<title>Hello AngularJS</title>
+<link href="css/angular-bootstrap.css" rel="stylesheet">
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+</style>
+<script src="js/angular.js"></script>
+		<script src="js/angular-sanitize.js"></script>
+		<script src="js/angular-translate.js"></script>
+		<script src="js/ui-bootstrap-tpls.js"></script>
+		<script src="js/dialogs-default-translations.js"></script>
+		<script src="js/dialogs.js"></script>
+		<script src="js/dialogTest.js"></script>
+		<link rel="stylesheet" href="css/dialogs.css">
+
+</head>
+
+<body ng-app="customer">
+
+<nav class="navbar navbar-default navbar-inverse " role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        Maucc
+      </a>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom " role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+  </div>
+</nav>
+
+	<div class="container" ng-controller="CustCtrl">
+
+		<form class="form-horizontal" ng-submit="SubmitData()">
+			<h3>Users</h3>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">用户ID:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.CustID" placeholder="用户ID">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">用户名:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.CustName" placeholder="用户名">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">用户地址:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.CustAddress"
+						placeholder="用户地址">
+				</div>
+			</div>
+			<hr>
+			<h3>Fill Quantity</h3>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">建筑面积:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.FloorArea" placeholder="建筑面积">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">实用面积:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.UsableArea"
+						placeholder="实用面积">
+				</div>
+			</div>
+			<hr>
+			<button type="submit" class="btn btn-success">
+				<span class="glyphicon glyphicon-save"></span>提交
+			</button>
+		</form>
+
+		<!--  
+		<div ng-controller="home as home" ng-cloak class="ng-cloak">
+			<p>The ID is {{home.greeting.id}}</p>
+			<p>The content is {{home.greeting.content}}</p>
+		</div>
+		-->
+	</div>
+	<script src="js/customer.js"></script>
+</body>
+</html>

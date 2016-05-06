@@ -1,0 +1,14 @@
+my:
+ ftpservers:
+    - address: ftp2.bigmachines.com
+      port: 22
+      protocal: sftp
+      remotepath: /home/shanghaimanchi/upload_zip/automated/
+      username: shanghaimanchi
+      password: shan8171
+    - address: ftp2.bigmachines.com
+      port: 22
+      protocal: sftp
+      remotepath: /home/shanghaimanchi/upload_zip/automated/
+      username: shanghaimanchi
+      password: shan8171
