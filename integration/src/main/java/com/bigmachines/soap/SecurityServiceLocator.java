@@ -22,7 +22,7 @@ public class SecurityServiceLocator extends org.apache.axis.client.Service imple
     }
 
     // Use to get a proxy class for SecurityServicePort
-    private java.lang.String SecurityServicePort_address = "https://partnertrn-osc-022.bigmachines.com/v1_0/receiver";
+    private java.lang.String SecurityServicePort_address = "https://shanghaimanchi.bigmachines.com/v1_0/receiver";
 
     public java.lang.String getSecurityServicePortAddress() {
         return SecurityServicePort_address;

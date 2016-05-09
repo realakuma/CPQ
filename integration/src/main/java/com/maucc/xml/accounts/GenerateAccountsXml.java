@@ -91,6 +91,8 @@ public class GenerateAccountsXml {
 				for (HashMap patameter : patameterMap) {
 
 					RecordList.EachRecord eachrecord = new RecordList.EachRecord();
+					eachrecord.setCategory("bm_crm");
+					eachrecord.setAction(action);
 					eachrecord.setCustomerId(patameter.get("CustomerId").toString());
 					eachrecord.setCompanyName(patameter.get("CompanyName").toString());
 					listeachrecords.add(eachrecord);

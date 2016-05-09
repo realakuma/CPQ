@@ -50,6 +50,14 @@ public class Example {
 				login.setUserInfo(loginUserInfo);
 				logrp = sspt.login(login);
 				System.out.println(logrp.getUserInfo().getSessionId());
+				//gen zip file
+				account_zipfile=genAccountXmlFiles(userinfo);
+				
+				//upload to ftp
+				//List<String> ftpServers=getFtpServers();
+				//System.out.println(ftpServers.size());
+				 uploadToFTP(account_zipfile);
+				
 			} else {
 				try {
 					System.out.println("SessionID: " + userinfo.getSessionID());
@@ -61,8 +69,8 @@ public class Example {
 					account_zipfile=genAccountXmlFiles(userinfo);
 					
 					//upload to ftp
-					List<String> ftpServers=getFtpServers();
-					System.out.println(ftpServers.size());
+					//List<String> ftpServers=getFtpServers();
+					//System.out.println(ftpServers.size());
 					//uploadToFTP(account_zipfile);
 					
 					//insert into datatable

@@ -16,6 +16,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -138,6 +140,7 @@ import javax.xml.bind.annotation.XmlType;
 public class RecordList {
 
     @XmlElement(name = "site_version", required = true)
+    @XmlCDATA
     protected String siteVersion;
     @XmlElement(name = "each_record")
     protected List<RecordList.EachRecord> eachRecord;
