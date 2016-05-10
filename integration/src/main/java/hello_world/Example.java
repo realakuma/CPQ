@@ -61,7 +61,7 @@ public class Example {
 				//System.out.println(ftpServers.size());
 				 //uploadToFTP(account_zipfile);
 				
-				//create transacation
+				//create transacation TEST
 				
 				 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
 						 "create",
