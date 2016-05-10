@@ -39,8 +39,8 @@ public class Example {
 		LoginResponse logrp;
 		LogoutResponse logoutrp;
 		GetUserInfoResponse getUserInfo;
-		loginUserInfo.setUsername("admin");
-		loginUserInfo.setPassword("o8d3aynD");
+		loginUserInfo.setUsername("Shawn.jiao");
+		loginUserInfo.setPassword("Sxj@1234");
 		String returnMessage = "";
 		String account_zipfile="";
 		try {
@@ -71,7 +71,7 @@ public class Example {
 					//upload to ftp
 					//List<String> ftpServers=getFtpServers();
 					//System.out.println(ftpServers.size());
-					//uploadToFTP(account_zipfile);
+					uploadToFTP(account_zipfile);
 					
 					//insert into datatable
 					
@@ -145,7 +145,7 @@ public class Example {
 		zip.compress(xmlfilename);
 		// 生成upload_list.xml
 		xmlfilename = Convert.getFileNameByFullPath(xmlfilename);
-		String uploadfilepath = gax.genUploadListFile(xmlfilename);
+		String uploadfilepath = gax.genUploadListFile(xmlfilename.replace(".xml", ".zip"));
 		return xmlfilename.substring(0, xmlfilename.length() - 4) + ".zip";
 	}
 	
