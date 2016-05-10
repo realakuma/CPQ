@@ -23,7 +23,9 @@ import com.maucc.util.Config;
 import com.maucc.util.Convert;
 import com.maucc.util.MySFTP;
 import com.maucc.util.ZIP;
+import com.maucc.ws.client.HttpSoapCallTranscation;
 import com.maucc.xml.accounts.GenerateAccountsXml;
+import com.maucc.xml.transcations.CreateTransactionResponse;
 
 @RestController
 @EnableAutoConfiguration
@@ -43,6 +45,7 @@ public class Example {
 		loginUserInfo.setPassword("Sxj@1234");
 		String returnMessage = "";
 		String account_zipfile="";
+		CreateTransactionResponse ctrp;
 		try {
 
 			if (userinfo.getSessionID().equals("")) {
@@ -51,13 +54,26 @@ public class Example {
 				logrp = sspt.login(login);
 				System.out.println(logrp.getUserInfo().getSessionId());
 				//gen zip file
-				account_zipfile=genAccountXmlFiles(userinfo);
+				//account_zipfile=genAccountXmlFiles(userinfo);
 				
 				//upload to ftp
 				//List<String> ftpServers=getFtpServers();
 				//System.out.println(ftpServers.size());
-				 uploadToFTP(account_zipfile);
+				 //uploadToFTP(account_zipfile);
 				
+				//create transacation
+				
+				 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
+						 "create",
+						 "https://shanghaimanchi.bigmachines.com/v1_0/receiver",
+						 logrp.getUserInfo().getSessionId(),
+						 "https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/commerce/oraclecpqo.xsd"
+						 );
+				
+				 ctrp=httpsoapcalltran.createTranscation();
+				 CreateTransactionResponse.Transaction.DataXml dataxml=ctrp.getTransaction().getDataXml();
+				 httpsoapcalltran.updateTranscation(String.valueOf(ctrp.getTransaction().getId()), ctrp.getTransaction().getProcessVarName(), ctrp.getTransaction().getSupplierCompanyName(),ctrp.getTransaction().getCurrencyPref(),ctrp.getTransaction().getBuyerUserName());
+				  
 			} else {
 				try {
 					System.out.println("SessionID: " + userinfo.getSessionID());

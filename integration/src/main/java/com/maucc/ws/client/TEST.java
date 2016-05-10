@@ -3,6 +3,7 @@ package com.maucc.ws.client;
 import java.util.HashMap;
 
 import com.bigmachines.soap.*;
+import com.maucc.xml.transcations.CreateTransactionResponse;
 
 
 public class TEST {
@@ -15,8 +16,8 @@ public class TEST {
 			 LoginResponse logrp;
 			 LogoutResponse logoutrp;
 			 GetUserInfoResponse getUserInfo;
-			 userinfo.setUsername("admin");
-			 userinfo.setPassword("o8d3aynD");
+			 userinfo.setUsername("Shawn.jiao");
+			 userinfo.setPassword("Sxj@1234");
 			 
 			 try
 			 {
@@ -34,14 +35,20 @@ public class TEST {
 	         patameterMap[0].put("customer_address", "fmale");
 	         
 	         
-			 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
+	    	 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
 					 "create",
-					 "https://partnertrn-osc-022.bigmachines.com/v1_0/receiver",
+					 "https://shanghaimanchi.bigmachines.com/v1_0/receiver",
 					 logrp.getUserInfo().getSessionId(),
-					 "https://partnertrn-osc-022.bigmachines.com/bmfsweb/partnertrn-osc-022/schema/v1_0/commerce/quickstart_commerce_process_bmClone_4.xsd"
-					 );
-			 
-			 httpsoapcalltran.updateTranscation("9438954", "quickstart_commerce_process_bmClone_4", "partnertrn-osc-022", "USD");
+					 "https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/commerce/oraclecpqo.xsd",
+					 "oraclecpqo","transaction");
+	    	 CreateTransactionResponse ctrp=httpsoapcalltran.createTranscation();
+	    	 CreateTransactionResponse.Transaction.DataXml dataxml=ctrp.getTransaction().getDataXml();
+	    	 System.out.println(String.valueOf(ctrp.getTransaction().getId()));
+	    	 System.out.println(ctrp.getTransaction().getProcessVarName());
+	    	 //System.out.println(ctrp.getTransaction().getDataXml().getQuoteProcess().getCurrencyPref());
+	    	 
+	    	 
+			 httpsoapcalltran.updateTranscation(String.valueOf(ctrp.getTransaction().getId()), ctrp.getTransaction().getProcessVarName(), ctrp.getTransaction().getSupplierCompanyName(),ctrp.getTransaction().getCurrencyPref(),ctrp.getTransaction().getBuyerUserName());
 			 
 			 /*
 	    	 HttpSoapCallDataTable dynamicHttpclientCall = new HttpSoapCallDataTable("urn:soap.bigmachines.com", 
