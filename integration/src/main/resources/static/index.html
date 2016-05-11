@@ -31,14 +31,14 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-default navbar-fixed-bottom " role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-  </div>
-</nav>
+
 
 	<div class="container" ng-controller="CustCtrl">
+	<div class="pull-right">
+	<button type="submit" class="btn btn-success btn-left">
+				<span class="glyphicon glyphicon-save"></span>提交
+			</button>
+	</div>
 
 		<form class="form-horizontal" ng-submit="SubmitData()">
 			<h3>Users</h3>
@@ -63,6 +63,57 @@
 				</div>
 			</div>
 			<hr>
+			<h3>Home Info</h3>
+				<div class="form-group">
+				<label class="col-sm-2 control-label">楼层:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.Floor"
+						placeholder="楼层">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">地下室:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.Basement"
+						placeholder="地下室">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">车库车位:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.Garage"
+						placeholder="车库车位">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">卧室:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.Bedroom"
+						placeholder="卧室">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">客厅:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.Livingroom"
+						placeholder="客厅">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">洗手间:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.bathroom"
+						placeholder="洗手间">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">书房:</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="CustInfo.study"
+						placeholder="书房">
+				</div>
+			</div>
+			<hr>
 			<h3>Fill Quantity</h3>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">建筑面积:</label>
@@ -77,10 +128,7 @@
 						placeholder="实用面积">
 				</div>
 			</div>
-			<hr>
-			<button type="submit" class="btn btn-success">
-				<span class="glyphicon glyphicon-save"></span>提交
-			</button>
+	
 		</form>
 
 		<!--  
