@@ -7,6 +7,15 @@ public class UserInfo {
 	private String CustAddress;
 	private String CustID;
 	private String CustName;
+	private String Floor;
+	private String Basement;
+	private String Garage;
+	private String Bedroom;
+	private String Livingroom;
+	private String Bathroom;
+	private String Study;
+	
+	
 	private String FloorArea;
 	private String UsableArea;
 	private String sessionID;
@@ -63,6 +72,63 @@ public class UserInfo {
 
 	public String getUsableArea() {
 		return this.UsableArea;
+	}
+	@JsonProperty(value = "Floor")
+	public String getFloor() {
+		return Floor;
+	}
+
+	public void setFloor(String floor) {
+		Floor = floor;
+	}
+
+	@JsonProperty(value = "Basement")
+	public String getBasement() {
+		return Basement;
+	}
+
+	public void setBasement(String basement) {
+		Basement = basement;
+	}
+	@JsonProperty(value = "Garage")
+	public String getGarage() {
+		return Garage;
+	}
+
+	public void setGarage(String garage) {
+		Garage = garage;
+	}
+	@JsonProperty(value = "Bedroom")
+	public String getBedroom() {
+		return Bedroom;
+	}
+
+	public void setBedroom(String bedroom) {
+		Bedroom = bedroom;
+	}
+	@JsonProperty(value = "Livingroom")
+	public String getLivingroom() {
+		return Livingroom;
+	}
+
+	public void setLivingroom(String livingroom) {
+		Livingroom = livingroom;
+	}
+	@JsonProperty(value = "Bathroom")
+	public String getBathroom() {
+		return Bathroom;
+	}
+
+	public void setBathroom(String Bathroom) {
+		this.Bathroom = Bathroom;
+	}
+	@JsonProperty(value = "Study")
+	public String getStudy() {
+		return Study;
+	}
+
+	public void setStudy(String study) {
+		Study = study;
 	}
 
 }

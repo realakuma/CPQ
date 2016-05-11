@@ -30,14 +30,16 @@ import com.maucc.xml.datatables.AddResponse;
      private String soapResponseData;
      private String sessionID;
      private String tableName;
+     private String xsdLocation;
  
-     public HttpSoapCallDataTable(String namespace, String methodName, String wsdlLocation,String sessionID,String tableName) {
+     public HttpSoapCallDataTable(String namespace, String methodName, String wsdlLocation,String sessionID,String tableName,String xsdLocation) {
  
          this.namespace = namespace;
          this.methodName = methodName;
          this.wsdlLocation = wsdlLocation;
          this.sessionID=sessionID;
          this.tableName=tableName;
+         this.xsdLocation=xsdLocation;
      }
  
      private int invoke(HashMap []  patameterMap) throws Exception {
@@ -69,7 +71,7 @@ import com.maucc.xml.datatables.AddResponse;
          soapRequestData.append("<bm:category xmlns:bm=\"urn:soap.bigmachines.com\">Data Tables</bm:category>");
         
          soapRequestData.append("<bm:xsdInfo xmlns:bm=\"urn:soap.bigmachines.com\">");
-         soapRequestData.append("<bm:schemaLocation>https://partnertrn-osc-022.bigmachines.com/bmfsweb/partnertrn-osc-022/schema/v1_0/datatables/"+this.tableName+".xsd</bm:schemaLocation></bm:xsdInfo>");
+         soapRequestData.append("<bm:schemaLocation>"+this.xsdLocation+"</bm:schemaLocation></bm:xsdInfo>");
          soapRequestData.append("</soapenv:Header>");
          soapRequestData.append("<soapenv:Body>");
          soapRequestData.append("<bm:"+this.methodName+" xmlns:bm=\""+this.namespace+"\">");
@@ -125,7 +127,8 @@ import com.maucc.xml.datatables.AddResponse;
     	 HttpSoapCallDataTable dynamicHttpclientCall = new HttpSoapCallDataTable("urn:soap.bigmachines.com", 
     			 "add",
     			 "https://partnertrn-osc-022.bigmachines.com/v1_0/receiver",logrp.getUserInfo().getSessionId(),
-    			 "ZB_CUSTOMERS");
+    			 "ZB_CUSTOMERS",
+    			 "");
  
     	 HashMap  [] patameterMap=new HashMap[1]; 
     	 patameterMap[0]=new HashMap();
@@ -183,7 +186,8 @@ import com.maucc.xml.datatables.AddResponse;
     		 HttpSoapCallDataTable dynamicHttpclientCall = new HttpSoapCallDataTable(this.namespace, 
         			 "add",
         			 this.wsdlLocation,this.sessionID,
-        			 this.tableName);
+        			 this.tableName,
+        			 this.xsdLocation);
     		 
     		 statusCode = dynamicHttpclientCall.invoke(record);
     		 
@@ -232,7 +236,8 @@ import com.maucc.xml.datatables.AddResponse;
     		 HttpSoapCallDataTable dynamicHttpclientCall = new HttpSoapCallDataTable(this.namespace, 
         			 "deploy",
         			 this.wsdlLocation,this.sessionID,
-        			 this.tableName);
+        			 this.tableName,
+        			 this.xsdLocation);
     		 statusCode = dynamicHttpclientCall.invoke(null);
     		 
     		 if(statusCode == 200) {

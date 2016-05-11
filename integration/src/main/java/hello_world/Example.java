@@ -23,6 +23,7 @@ import com.maucc.util.Config;
 import com.maucc.util.Convert;
 import com.maucc.util.MySFTP;
 import com.maucc.util.ZIP;
+import com.maucc.ws.client.HttpSoapCallDataTable;
 import com.maucc.ws.client.HttpSoapCallTranscation;
 import com.maucc.xml.accounts.GenerateAccountsXml;
 import com.maucc.xml.transcations.CreateTransactionResponse;
@@ -62,17 +63,45 @@ public class Example {
 				 //uploadToFTP(account_zipfile);
 				
 				//create transacation TEST
-				
 				 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
 						 "create",
 						 "https://shanghaimanchi.bigmachines.com/v1_0/receiver",
 						 logrp.getUserInfo().getSessionId(),
-						 "https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/commerce/oraclecpqo.xsd"
-						 );
-				
-				 ctrp=httpsoapcalltran.createTranscation();
-				 CreateTransactionResponse.Transaction.DataXml dataxml=ctrp.getTransaction().getDataXml();
+						 "https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/commerce/oraclecpqo.xsd",
+						 "oraclecpqo","transaction");
+		    	 ctrp=httpsoapcalltran.createTranscation();
+		    	 CreateTransactionResponse.Transaction.DataXml dataxml=ctrp.getTransaction().getDataXml();
+		    	 System.out.println(String.valueOf(ctrp.getTransaction().getId()));
+		    	 System.out.println(ctrp.getTransaction().getProcessVarName());
+		    	 //System.out.println(ctrp.getTransaction().getDataXml().getQuoteProcess().getCurrencyPref());
+		    	 
+		    	 
 				 httpsoapcalltran.updateTranscation(String.valueOf(ctrp.getTransaction().getId()), ctrp.getTransaction().getProcessVarName(), ctrp.getTransaction().getSupplierCompanyName(),ctrp.getTransaction().getCurrencyPref(),ctrp.getTransaction().getBuyerUserName());
+			
+				 // update datatable
+				 
+				 HashMap  [] patameterMap=new HashMap[1]; 
+		    	 patameterMap[0]=new HashMap();
+		         patameterMap[0].put("Transaction_id",String.valueOf(ctrp.getTransaction().getId()));
+		         patameterMap[0].put("Transaction_Name", ctrp.getTransaction());
+		         patameterMap[0].put("Floors", userinfo.getFloor());
+		         patameterMap[0].put("Cellar", userinfo.getBasement());
+		         patameterMap[0].put("Garage", userinfo.getGarage());
+		         patameterMap[0].put("Garage", userinfo.getGarage());
+		         patameterMap[0].put("Bedroom", userinfo.getBedroom());
+		         patameterMap[0].put("Halls", userinfo.getLivingroom());
+		         patameterMap[0].put("Washroom", userinfo.getBathroom());
+		         patameterMap[0].put("Study", userinfo.getStudy());
+				 
+				 HttpSoapCallDataTable dynamicHttpclientCall = new HttpSoapCallDataTable("urn:soap.bigmachines.com", 
+		    			 "add",
+		    			 "https://shanghaimanchi.bigmachines.com/v1_0/receiver",logrp.getUserInfo().getSessionId(),
+		    			 "HouseBasicInfo",
+		    			 "https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/datatables/HouseBasicInfo.xsd");
+		    	 dynamicHttpclientCall.add(patameterMap);
+		    	 
+		    	 dynamicHttpclientCall.deploy();
+				 
 				  
 			} else {
 				try {

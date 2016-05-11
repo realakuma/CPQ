@@ -126,6 +126,7 @@ public class HttpSoapCallTranscation {
 		// soapRequestData.append("<bm:process_var_name>quickstart_commerce_process_bmClone_4</bm:process_var_name>");
 		soapRequestData.append("<bm:process_var_name>" + this.process_var_name + "</bm:process_var_name>");
 		soapRequestData.append("<bm:_bm_cm_new_transaction_currency/>");
+		/*
 		soapRequestData.append("<bm:return_specific_attributes>");
 		soapRequestData.append("<bm:documents>");
 		soapRequestData.append("<bm:document>");
@@ -137,6 +138,7 @@ public class HttpSoapCallTranscation {
 		soapRequestData.append("</bm:document>");
 		soapRequestData.append("</bm:documents>");
 		soapRequestData.append("</bm:return_specific_attributes>");
+		*/
 		soapRequestData.append("</bm:transaction>");
 		soapRequestData.append("</bm:createTransaction>");
 		/*

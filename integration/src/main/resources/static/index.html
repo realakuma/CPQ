@@ -34,13 +34,14 @@
 
 
 	<div class="container" ng-controller="CustCtrl">
-	<div class="pull-right">
+	
+
+		<form class="form-horizontal" ng-submit="SubmitData()">
+		<div class="pull-right">
 	<button type="submit" class="btn btn-success btn-left">
 				<span class="glyphicon glyphicon-save"></span>提交
 			</button>
 	</div>
-
-		<form class="form-horizontal" ng-submit="SubmitData()">
 			<h3>Users</h3>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">用户ID:</label>
@@ -102,14 +103,14 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">洗手间:</label>
 				<div class="col-sm-10">
-					<input type="text" ng-model="CustInfo.bathroom"
+					<input type="text" ng-model="CustInfo.Bathroom"
 						placeholder="洗手间">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">书房:</label>
 				<div class="col-sm-10">
-					<input type="text" ng-model="CustInfo.study"
+					<input type="text" ng-model="CustInfo.Study"
 						placeholder="书房">
 				</div>
 			</div>
