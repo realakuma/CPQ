@@ -55,12 +55,12 @@ public class Example {
 				logrp = sspt.login(login);
 				System.out.println(logrp.getUserInfo().getSessionId());
 				//gen zip file
-				//account_zipfile=genAccountXmlFiles(userinfo);
+				account_zipfile=genAccountXmlFiles(userinfo);
 				
 				//upload to ftp
 				//List<String> ftpServers=getFtpServers();
 				//System.out.println(ftpServers.size());
-				 //uploadToFTP(account_zipfile);
+				 uploadToFTP(account_zipfile);
 				
 				//create transacation TEST
 				 HttpSoapCallTranscation httpsoapcalltran= new HttpSoapCallTranscation("urn:soap.bigmachines.com",
@@ -86,7 +86,6 @@ public class Example {
 		         patameterMap[0].put("Transaction_Name", ctrp.getTransaction().getDataXml().getQuoteProcess().getTransactionIDT());
 		         patameterMap[0].put("Floors", userinfo.getFloor());
 		         patameterMap[0].put("Cellar", userinfo.getBasement());
-		         patameterMap[0].put("Garage", userinfo.getGarage());
 		         patameterMap[0].put("Garage", userinfo.getGarage());
 		         patameterMap[0].put("Bedroom", userinfo.getBedroom());
 		         patameterMap[0].put("Halls", userinfo.getLivingroom());
