@@ -126,19 +126,19 @@ public class HttpSoapCallTranscation {
 		// soapRequestData.append("<bm:process_var_name>quickstart_commerce_process_bmClone_4</bm:process_var_name>");
 		soapRequestData.append("<bm:process_var_name>" + this.process_var_name + "</bm:process_var_name>");
 		soapRequestData.append("<bm:_bm_cm_new_transaction_currency/>");
-		/*
+		
 		soapRequestData.append("<bm:return_specific_attributes>");
 		soapRequestData.append("<bm:documents>");
 		soapRequestData.append("<bm:document>");
 		// soapRequestData.append("<bm:var_name>quote_process</bm:var_name>");
 		soapRequestData.append("<bm:var_name>" + this.var_name + "</bm:var_name>");
 		soapRequestData.append("<bm:attributes>");
-		soapRequestData.append("<bm:attribute>_document_number</bm:attribute>");
+		soapRequestData.append("<bm:attribute>transactionID_t</bm:attribute>");
 		soapRequestData.append("</bm:attributes>");
 		soapRequestData.append("</bm:document>");
 		soapRequestData.append("</bm:documents>");
 		soapRequestData.append("</bm:return_specific_attributes>");
-		*/
+		
 		soapRequestData.append("</bm:transaction>");
 		soapRequestData.append("</bm:createTransaction>");
 		/*
@@ -224,8 +224,11 @@ public class HttpSoapCallTranscation {
 			statusCode = dynamicHttpclientCall.invoke(null);
 			if (statusCode == 200 || statusCode == 0) {
 				System.out.println("调用成功！");
+				//change the node name for JAXB
+				String newXml=Convert.changeXmlNodeforTransaction(new ByteArrayInputStream(dynamicHttpclientCall.soapResponseData.getBytes()));
+				
 				XMLStreamReader xsr = Convert
-						.GetSOAPResult(new ByteArrayInputStream(dynamicHttpclientCall.soapResponseData.getBytes()));
+						.GetSOAPResult(new ByteArrayInputStream(newXml.getBytes()));
 				JAXBContext jaxbContext = JAXBContext.newInstance("com.maucc.xml.transcations");
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 				JAXBElement<CreateTransactionResponse> je = unmarshaller.unmarshal(xsr,
@@ -241,7 +244,7 @@ public class HttpSoapCallTranscation {
 
 		} catch (Exception ex) {
 
-			result = ex.getMessage();
+			ex.printStackTrace();
 
 		}
 

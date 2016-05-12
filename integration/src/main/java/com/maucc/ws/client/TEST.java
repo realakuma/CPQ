@@ -45,6 +45,7 @@ public class TEST {
 	    	 CreateTransactionResponse.Transaction.DataXml dataxml=ctrp.getTransaction().getDataXml();
 	    	 System.out.println(String.valueOf(ctrp.getTransaction().getId()));
 	    	 System.out.println(ctrp.getTransaction().getProcessVarName());
+	    	 System.out.println(ctrp.getTransaction().getDataXml().getQuoteProcess().getTransactionIDT());
 	    	 //System.out.println(ctrp.getTransaction().getDataXml().getQuoteProcess().getCurrencyPref());
 	    	 
 	    	 

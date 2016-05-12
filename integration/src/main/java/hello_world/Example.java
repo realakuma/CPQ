@@ -83,7 +83,7 @@ public class Example {
 				 HashMap  [] patameterMap=new HashMap[1]; 
 		    	 patameterMap[0]=new HashMap();
 		         patameterMap[0].put("Transaction_id",String.valueOf(ctrp.getTransaction().getId()));
-		         patameterMap[0].put("Transaction_Name", ctrp.getTransaction());
+		         patameterMap[0].put("Transaction_Name", ctrp.getTransaction().getDataXml().getQuoteProcess().getTransactionIDT());
 		         patameterMap[0].put("Floors", userinfo.getFloor());
 		         patameterMap[0].put("Cellar", userinfo.getBasement());
 		         patameterMap[0].put("Garage", userinfo.getGarage());
