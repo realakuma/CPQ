@@ -23,8 +23,10 @@ import com.maucc.util.Config;
 import com.maucc.util.Convert;
 import com.maucc.util.MySFTP;
 import com.maucc.util.ZIP;
+import com.maucc.ws.client.HttpSoapCallConfigure;
 import com.maucc.ws.client.HttpSoapCallDataTable;
 import com.maucc.ws.client.HttpSoapCallTranscation;
+import com.maucc.ws.client.MeasureInfo;
 import com.maucc.xml.accounts.GenerateAccountsXml;
 import com.maucc.xml.transcations.CreateTransactionResponse;
 
@@ -78,6 +80,31 @@ public class Example {
 		    	 
 				 httpsoapcalltran.updateTranscation(String.valueOf(ctrp.getTransaction().getId()), ctrp.getTransaction().getProcessVarName(), ctrp.getTransaction().getSupplierCompanyName(),ctrp.getTransaction().getCurrencyPref(),ctrp.getTransaction().getBuyerUserName());
 			
+				 //add configure model to transaction 
+				 MeasureInfo measureinfo=new MeasureInfo();
+					measureinfo.setNamespace("urn:soap.bigmachines.com");
+					measureinfo.setMethodName("create");
+					measureinfo.setWsdlLocation("https://shanghaimanchi.bigmachines.com/v1_0/receiver");
+					measureinfo.setSessionID( logrp.getUserInfo().getSessionId());
+					measureinfo.setXsdLocation("https://shanghaimanchi.bigmachines.com/bmfsweb/shanghaimanchi/schema/v1_0/config/test/DesignQuotations_DesignQuotations.xsd");
+					measureinfo.setProcess_var_name("oraclecpqo");
+					measureinfo.setVar_name("transaction");
+					measureinfo.setSegment("test");
+					measureinfo.setProduct_line("DesignQuotations");
+					measureinfo.setModel("DesignQuotations");
+					measureinfo.setFloors(userinfo.getFloor());
+					measureinfo.setCellar(userinfo.getBasement());
+					measureinfo.setGarage( userinfo.getGarage());
+					measureinfo.setBedroom(userinfo.getBedroom());
+					measureinfo.setHalls(userinfo.getLivingroom());
+					measureinfo.setWashroom(userinfo.getBathroom());
+					measureinfo.setStudy(userinfo.getStudy());
+					measureinfo.setKitchen(userinfo.getKitchen());
+					measureinfo.setTransactionId(String.valueOf(ctrp.getTransaction().getId()));
+					
+					HttpSoapCallConfigure dynamicHttpclientCallConfig = new HttpSoapCallConfigure(measureinfo);
+					dynamicHttpclientCallConfig.createConfigure();
+					
 				 // update datatable
 				 
 				 HashMap  [] patameterMap=new HashMap[1]; 

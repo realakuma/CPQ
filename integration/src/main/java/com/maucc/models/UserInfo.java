@@ -14,11 +14,23 @@ public class UserInfo {
 	private String Livingroom;
 	private String Bathroom;
 	private String Study;
+
+
+	private String kitchen;
 	
 	
 	private String FloorArea;
 	private String UsableArea;
 	private String sessionID;
+	
+	@JsonProperty(value = "Kitchen")
+	public String getKitchen() {
+		return kitchen;
+	}
+
+	public void setKitchen(String kitchen) {
+		this.kitchen = kitchen;
+	}
 
 	@JsonProperty(value = "CustAddress")
 	public void setCustAddress(String CustAddress) {
