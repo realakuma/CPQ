@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link href="css/angular-bootstrap.css" rel="stylesheet">
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/ng-file-upload-shim.js"></script>
+<script type="text/javascript" src="js/ng-file-upload.js"></script>
+
+
+
+<style type="text/css">
+.thumb {
+	width: 24px;
+	height: 24px;
+	float: none;
+	position: relative;
+	top: 7px;
+}
+
+form .progress {
+	line-height: 15px;
+}
+
+}
+.progress {
+	display: inline-block;
+	width: 100px;
+	border: 3px groove #CCC;
+}
+
+.progress div {
+	font-size: smaller;
+	background: orange;
+	width: 0;
+}
+</style>
+
+<title>by danialfarid</title>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-inverse " role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        Maucc
+      </a>
+    </div>
+  </div>
+</nav>
+<body ng-app="fileUpload" ng-controller="MyCtrl">
+	<form name="myForm">
+		<fieldset>
+			<legend>上传文件</legend>
+			客户名：
+		 <input type="text" name="userName" ng-model="username" size="20" required>
+      <i ng-show="myForm.userName.$error.required">*必需</i> <br>
+			<input class="btn" type="file" ngf-select ng-model="ordinaryFile" name="file"
+				accept="*" ngf-max-size="10MB" required
+				ngf-model-invalid="errorFile"> <i
+				ng-show="myForm.file.$error.required">*必需</i><br> <i
+				ng-show="myForm.file.$error.maxSize">文件过大
+				{{errorFile.size / 1000000|number:1}}MB: 文件最大 10M</i> 
+			<button class="btn btn-success" ng-disabled="!myForm.$valid" ng-click="uploadPic(ordinaryFile)">Submit</button>
+			<br>
+			<span class="progress" ng-show="ordinaryFile.progress >= 0">
+			</span> <span ng-show="ordinaryFile.result||ordinaryFile.start">{{returnMsg}}</span> <span
+				class="err" ng-show="errorMsg">{{errorMsg}}</span>
+		</fieldset>
+		<br>
+	</form>
+</body>
+
+<script type="text/javascript" src="js/file-upload.js"></script>
+
+</html>
