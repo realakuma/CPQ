@@ -135,6 +135,7 @@ public class MySFTP {
 
 	public static void main(String[] args) {
 		MySFTP sf = new MySFTP();
+		/*
 		String host = "ftp2.bigmachines.com";
 		int port = 22;
 		String username = "shanghaimanchi";
@@ -142,11 +143,19 @@ public class MySFTP {
 		String directory = "/home/shanghaimanchi/upload_zip/automated/";
 		String uploadFile = "C:\\work\\workspace\\CPQWebservice\\crm_20160428120249.zip";
 		String downloadFile = "upload.txt";
-		String saveFile = "D:\\tmp\\download.txt";
+		*/
+		String host = "sftp.ap1.cloud.oracle.com";
+		int port = 22;
+		String username = "ap178342";
+		String password = "Akuma7v8yps";
+		String directory = "/E_1/BIP";
+		String uploadFile = "C:\\work\\workspace\\CPQWebservice\\crm_20160428120249.zip";
+		String downloadFile = "TEST.xml";
+		String saveFile = "C:\\work\\TEST.XML";
 		String deleteFile = "delete.txt";
 		ChannelSftp sftp = sf.connect(host, port, username, password);
-		sf.upload(directory, uploadFile, sftp);
-		//sf.download(directory, downloadFile, saveFile, sftp);
+		//sf.upload(directory, uploadFile, sftp);
+		sf.download(directory, downloadFile, saveFile, sftp);
 		//sf.delete(directory, deleteFile, sftp);
 		try {
 			//sftp.cd(directory);

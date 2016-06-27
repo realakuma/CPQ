@@ -22,7 +22,8 @@ public class Accounts {
 	static String m_user = "zhu@artgreenhomes.com";
 	  static String m_pass = "Zhu@42266";
 	  public static String m_salse_base_link_url="https://documents-a403830.documents.us2.oraclecloud.com/documents";
-	  static String m_salse_base_url = "https://edda.crm.ap1.oraclecloud.com/";
+	  //static String m_salse_base_url = "https://edda.crm.ap1.oraclecloud.com/";
+	  static String m_salse_base_url = "https://edda-test.crm.ap1.oraclecloud.com/";
 	  static String m_sales_crmCommonApi="crmCommonApi/";
 	  static String m_sales_salesApi="salesApi/";
 	  static String m_sales_resources="resources/";
