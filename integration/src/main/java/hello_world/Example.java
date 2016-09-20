@@ -13,7 +13,10 @@ import javax.validation.Valid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +44,15 @@ import com.maucc.documents.*;
 
 @RestController
 @EnableAutoConfiguration
-public class Example {
+@SpringBootApplication
+
+public class Example extends SpringBootServletInitializer{
+	
+	 @Override
+	    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	        return application.sources(Example.class);
+	    }
+	 
 	
 	 @RequestMapping(value="/upload", method=RequestMethod.GET)  
 	    public @ResponseBody String provideUploadInfo() {  
@@ -103,6 +114,34 @@ public class Example {
 	        }  
 	    }  
 	    
+
+	    
+	    @RequestMapping(value="/imgsupload", method=RequestMethod.POST)  
+	    public @ResponseBody String handleImgsUpload(@RequestParam("file") MultipartFile file){  
+	        if (!file.isEmpty()) {  
+	            try {  
+	                byte[] bytes = file.getBytes(); 
+	            	String json="";
+	            	Map<String,Object> map;
+
+	                BufferedOutputStream stream = null;
+	                File f = new File(file.getOriginalFilename());
+	          
+	                stream=new BufferedOutputStream(new FileOutputStream(f));	                
+	                stream.write(bytes);  
+	                stream.close();
+	                
+
+	            	System.out.println(file.getName());
+	               
+	                return  "{\"result\": \"" +file.getName()+ "\"}";  
+	            } catch (Exception e) {  
+	               return e.getMessage();
+	            }  
+	        } else {  
+	            return "You failed to upload  because the file was empty.";  
+	        }  
+	    }  
 
 	@SuppressWarnings("finally")
 	@RequestMapping(value = "/customer", method = RequestMethod.POST)
